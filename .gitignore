@@ -1,0 +1,3 @@
+*.swp
+settings.secret.json
+node_modules

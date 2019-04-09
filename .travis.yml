@@ -1,0 +1,15 @@
+sudo: false
+language: node_js
+node_js:
+- 4.5.0
+before_install:
+- curl https://install.meteor.com | /bin/sh
+- export PATH="$HOME/.meteor:$PATH"
+script:
+    - meteor add practicalmeteor:mocha practicalmeteor:mocha-console-runner; meteor npm i spacejam test-packages --driver-package=practicalmeteor:mocha-console-runner ./ 
+env:
+  global:
+    - AWSRegion="us-west-1"
+    - AWSBucket="test-bucket-autoform"
+    - secure: z/XU+qCD8nRe9nQb5Kvij16//oxj4P52CjSPLkeMMieVgbUktaQOp+rk4QPQ15eeEs0JXd3VpnRmyfonZAhFwP/fiqFoD4OwDioXNQnNZLDsirzKzacdEUX9kcGE4rI+I/00YgipiiL1zC5wCv7jkOxGDsWqcyHrMgpjx8I3c6VtpQJ90+kCq085VrCN4R2unSGSgCcR2KiLeXdXzsAv0+9NjBZKMUeFAsx7QBFar3IPgLV+OxpQb/8IW5SDTMRbFtSRI/t6I5goGiZU1ky51A0EAlPDfylTpeosHi1p3T+Nbfzw+jI1g6tx0CugIKX+rzqOTt4fp/xYwMkvTQo38DUJiAQzxw+6DnvBLzqpNFyFgmFcURPpjF7ys9F+wjx5uqXsPezJlbB69+iCWgt5jXn8f8zhIrGSjKJ981QTN/KOcXqokst89269QHRH14Gwnvvk0BekRwUEog/NlyHdMINXCMrZnmyVhkHCOxwTJ8qL7XDIl7uj8rGBuA6AnBq5jszTnNFOkg1I35BRwVyWN8mRPRSfPnppdCzmhXIixu6tMvCdJqma7xVlxUgb6oYLeMGmxap9FFYtzFa0ed2R2X9MqxFRFCbc8a5ubDsJOOLvaD2GK81ntuFhgadG61GmqbcKBM09Kev0tvcrIb04CoqI4/C3t8EdprKu4RrS+TM=
+    - secure: k+D27N6aadNXeRIb+9P5lBvTamq53KSULCU3lfela7j2r9o+IWG0KQqb35fTFBxZhAWD2egKU2PD3Jn3GAYWV5mZNOJ9zMalK79xuN7DbP3NTSfbo8tt85/4u7WfPDgaXyjN2i1hQqaVzh6cIPuyML7YO51WbSnAjJ2qnshH75fTUi+p5Va2sG3LdaB6W0gwL+XNx9uqSUlfPGaPtFVUjAxtlvNKVl3rTdzn4x+PO/92K1fYzLjcywrXqZ0Kr4JTP7E3ecvaTtOsfBdDsblIiSUdknVvrG+wZl1Lmjod2GRMDJxl7CIa9KNltbZ0SgZmwgv0iUu9Z0Yr1REj5p5Mk5LjcoHFDTmJ0hiBnfzk+gUgVsm6ThQHtX9PTxHOSajs+R0vdBzGrP000O6un20gBFelWKJwFPxJZ8D+pxXIM0yN+mUfFjipqA1/fAk/ailbExtFalIPHYrt0SNQWP0q0LWYBcmOzeOOuUW6kL3BGT6MS4mYlRiEAeYTk3qzDbX65ZtrjxnCIcRKT2xvnkwmmJ9qr5DqegMPAh4iQrP9izEznU1aMF1UxVa6S5agyFvasW5uytgvjDLycnFUGBeV7n56AiHIZvEckxOYoezDmVp6N8ahUz5jjaDE1GsbNKBxdPYpu7i5OYpCrgOTFpQJfVhtVyur11PqgOk4DG0htuQ=
