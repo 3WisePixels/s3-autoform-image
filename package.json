@@ -1,6 +1,6 @@
 {
   "name": "autoform-images",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An atmosphere package for adding s3 image upload support to Autoform ",
   "main": "autoform-images.js",
   "directories": {

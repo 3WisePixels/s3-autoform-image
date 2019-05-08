@@ -1,8 +1,8 @@
 Package.describe({
   name: 'nnanna3wp:autoform-images',
-  version: '0.0.3',
+  version: '0.0.4',
   // Brief, one-line summary of the package.
-  summary: 'Image upload for Autoform without crop',
+  summary: 's3 Image upload for Autoform without crop',
   // URL to the Git repository containing the source code for this package.
   git: '',
   // By default, Meteor will default to using README.md for documentation.

@@ -25,7 +25,7 @@ We assume you have various S3 variables and MAXUpload configured in your `Meteor
     "AWSSecretAccessKey": "****************************************",
     "AWSRegion": "*********",
     "AWSBucket": "*************",
-    "MAXUpload": "10MB"
+    "MAXUploadMB": 10
 }
 ```
 
