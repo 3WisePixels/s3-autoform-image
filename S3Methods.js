@@ -1,7 +1,5 @@
-// Meteor.methods({
-//   deleteImage(imageURL){
-//     S3.delete(imageURL, (err,res) => {
-//       console.log(err,res);
-//     });
-//   }
-// });
+Meteor.methods({
+  GetMaxUploadMB() {
+    return Meteor.settings.MAXUploadMB;
+  },
+});

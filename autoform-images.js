@@ -31,6 +31,12 @@ Template.addImageElemTemplate.onCreated(function(){
   this.uploader = new Slingshot.Upload("myFileUploads");
   let self = this;
   self.url = new ReactiveVar();
+  this.maxsize = new ReactiveVar(10);
+  Meteor.call('GetMaxUploadMB', (err, res) => {
+    console.log('Max upload size',res);
+    self.maxsize.set(parseInt(res));
+  });
+
 
   fileUrlMap[this.data.name] = new ReactiveVar(Template.instance().data.value || '');
 
@@ -59,6 +65,10 @@ Template.addImageElemTemplate.onCreated(function(){
       log('binding new croppie');
       let imageEl = this.imageEl;
       const blob = new Blob([event.target.result]);
+      if(blob.size > self.maxsize.get()*1000000){
+        alert("File cannot be bigger than " + self.maxsize.get().toString() + "MB");
+        return;
+      }
       var canvas = document.createElement('canvas');
       var ctx = canvas.getContext('2d');
       var img = new Image();
