@@ -1,7 +1,7 @@
 {
   "name": "autoform-images",
-  "version": "1.0.1",
-  "description": "An atmosphere package for adding image upload support to Autoform ",
+  "version": "1.0.2",
+  "description": "An atmosphere package for adding s3 image upload support to Autoform ",
   "main": "autoform-images.js",
   "directories": {
     "test": "tests"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/3WisePixels/autoform-images.git"
+    "url": "git+https://github.com/3WisePixels/s3-autoform-images.git"
   },
   "author": "",
   "license": "ISC",

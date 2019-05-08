@@ -17,14 +17,15 @@ meteor npm install --save exif-js@2.2.1
 ## Configuration
 
 ### Settings configuration
-We assume you have various S3 variables configured in your `Meteor.settings` file
+We assume you have various S3 variables and MAXUpload configured in your `Meteor.settings` file
 
 ```json
 {
     "AWSAccessKeyId": "********************",
     "AWSSecretAccessKey": "****************************************",
     "AWSRegion": "*********",
-    "AWSBucket": "*************"
+    "AWSBucket": "*************",
+    "MAXUpload": "10MB"
 }
 ```
 
