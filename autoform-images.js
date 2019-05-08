@@ -29,12 +29,24 @@ AutoForm.addInputType('afImageElem', {
 Template.addImageElemTemplate.onCreated(function(){
   log('created template');
   this.uploader = new Slingshot.Upload("myFileUploads");
+  let self = this;
+  self.url = new ReactiveVar();
 
   fileUrlMap[this.data.name] = new ReactiveVar(Template.instance().data.value || '');
 
   this.fileUrl = () => {
     return fileUrlMap[this.data.name];
   }
+  self.initialValueChecked = false;
+    self.checkInitialValue = function () {
+      Tracker.nonreactive(function () {
+        if (! self.initialValueChecked && ! self.url.get() && self.data.value) {
+          self.url.set(self.data.value);
+          self.initialValueChecked = true;
+        }
+      });
+    };
+
   this.imageExists = new ReactiveVar(false);
   this.imageId = this.data.name.replace(".","-");
   const imageIdSave = this.imageId;
@@ -71,12 +83,17 @@ Template.addImageElemTemplate.onCreated(function(){
             orientation: exifInfo && exifInfo.Orientation,
         };
         let d = document.getElementById(this.imageId);
+        //let d = Template.instance().find(this.imageId);
         d.appendChild(canvas)
         // debugger;
       };
       this.imageExists.set(true);
   });
 });
+
+Template.addImageElemTemplate.onRendered(function(){
+
+})
 Template.addImageElemTemplate.onDestroyed(function(){
 
 });
@@ -84,6 +101,7 @@ Template.addImageElemTemplate.onDestroyed(function(){
 Template.addImageElemTemplate.events({
   'change .image-file-button'(event, target){
     Template.instance().fileUrl().set("");
+    Template.instance().url.set("");
     if(event.target.files.length !== 0){
 
       Template.instance().filename = Date.now() + event.target.files[0].name;
@@ -112,10 +130,12 @@ Template.addImageElemTemplate.events({
         if (error) {
           log(error);
           templateInstance.fileUrl().set("");
+          templateInstance.url.set("");
         }
         else {
           log('setting new download url', downloadUrl);
           templateInstance.fileUrl().set(downloadUrl);
+          templateInstance.url.set(downloadUrl);
           log(templateInstance.uploader.dataUri);
           log('current uploader url', templateInstance.uploader.url(true));
         }
@@ -129,10 +149,12 @@ Template.addImageElemTemplate.helpers({
     return Math.round(Template.instance().uploader.progress() * 100);
   },
   url: function(){
-    if(Template.instance().fileUrl().get() === ""){
-        return Template.instance().uploader.url(true);
-    }
-    return Template.instance().fileUrl().get();
+
+    var t = Template.instance();
+
+      t.checkInitialValue();
+      return t.url.get();
+
   },
   shouldShowProgress: function(){
     return !isNaN(Template.instance().uploader.progress());
