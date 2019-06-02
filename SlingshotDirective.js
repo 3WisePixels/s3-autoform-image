@@ -20,7 +20,10 @@ Slingshot.createDirective("myFileUploads", Slingshot.S3Storage, {
   key: function (file) {
     //Store file into a directory by the user's id
     var user = Meteor.users.findOne(this.userId);
-    return user._id + "/" + file.name;
+    let fileName = file.name
+    fileName = Date.now() + "-" + fileName;
+    fileName = fileName.split(' ').join('-');
+    return user._id + "/" + fileName;
   },
   maxSize: (Meteor.settings.MAXUploadMB || 10) * 1024 * 1024, // 10 MB (use null for unlimited).
   allowedFileTypes: ["image/png", "image/jpeg", "image/gif"],

@@ -115,9 +115,10 @@ Template.addImageElemTemplate.events({
     if(event.target.files.length !== 0){
 
       //Template.instance().filename = Date.now() + event.target.files[0].name;
-      Template.instance().filename = Template.instance().filename + "-" + Date.now();
-      Template.instance().filename = Template.instance().filename.replace(" ","-");
+      Template.instance().filename = Date.now() + "-" + event.target.files[0].name;
+      Template.instance().filename = Template.instance().filename.split(' ').join('-');
       Template.instance().file = event.target.files[0];
+      console.log(Template.instance().filename);
       log('creating new croppie');
       //display image here
       log('new croppie created');
@@ -135,9 +136,8 @@ Template.addImageElemTemplate.events({
       log('uploading croppie data');
       log('obtained croppie blob');
       let imageFile = templateInstance.file
-      imageFile.name = templateInstance.filename;
-      imageFile.name = imageFile.name + "-" + Date.now();
-      imageFile.name = imageFile.name.replace(" ","-");
+
+      console.log("IMFN " + imageFile.name);
       document.getElementById(templateInstance.imageId).remove();
       templateInstance.imageExists.set(false);
       templateInstance.uploader.send(imageFile, function (error, downloadUrl) {
